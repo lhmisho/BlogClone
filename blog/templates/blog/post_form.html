@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-success">Save</button>
+    </form>
+{% endblock %}
+
+{% block js %}
+    <script>
+        var editor = new MediumEditor('.editable', {
+            buttonLabels: 'fontawesome'
+        });
+    </script>
+{% endblock %}
