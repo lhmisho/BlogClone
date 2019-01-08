@@ -1,0 +1,11 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="centerstage">
+        {% for post in post_list %}
+            <a href="{% url 'post-detial' pk=post.pk %}">{{ post.title }}</a>
+            <p>Publisedh on: {{ post.publish|date:"Y D M" }}</p>
+            <p><a href="{% url 'post-detial' pk=post.pk %}">Commnets: {{ post.approve_comments.count }}</a></p>
+        {% endfor %}
+    </div>
+{% endblock %}

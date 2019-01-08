@@ -5,6 +5,7 @@ urlpatterns = [
     path('', PostListView.as_view(), name='post-list'),
     path('post/<int:pk>/details/', PostDetailView.as_view(), name='post-detial'),
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
+    path('post/<int:pk>/remove/', PostDeleteView.as_view(), name='post-remove'),
     path('post/create/', PostCreateView.as_view(), name='post-create'),
     path('post/drafts/list/', PostDrafListView.as_view(), name='post-draft-list'),
     path('post/<int:pk>/comment/', add_comment_to_post, name='add_comment_post'),
