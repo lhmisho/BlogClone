@@ -7,7 +7,7 @@
 
         {% if form.errors %}
             <p>User or password doesn't matchd. try again</p>
-        {% endif %}
+        {% else %}
 
         <form action="{% url 'login' %}" method="POST">
             {% csrf_token %}

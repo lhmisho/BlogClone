@@ -19,7 +19,7 @@ class Post(models.Model):
         return self.comments.filter(approved_comment=True)
 
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk':elf.pk})
+        return reverse('post-detial', kwargs={'pk':self.pk})
 
     def __str__(self):
         return self.title

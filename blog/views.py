@@ -18,7 +18,8 @@ class PostListView(ListView):
     model = Post
 
     def get_queryset(self):
-        return Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+        qs = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+        return qs
 
 class PostDetailView(DetailView):
     model = Post
@@ -40,13 +41,15 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     success_url = reverse_lazy('post-list')
 
-class PostDrafListView(LoginRequiredMixin, ListView):
+class DrafListView(LoginRequiredMixin, ListView):
     login_url = '/login/'
-    context_object_name = 'post_draft_list'
+    context_object_name = 'draft_list'
     redirect_field_name = 'blog/post_list.html'
+    template_name = 'blog/post_draft_list.html'
 
     def get_queryset(self):
-        return Post.objects.filter(published_date__isnull=True).order_by('create_date')
+        qs = Post.objects.filter(published_date__isnull=True).order_by('create_date')
+        return qs
 
 
 #################################
@@ -82,5 +85,5 @@ def remove_comment(request, pk):
 @login_required
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    post.publish
+    post.publish()
     return redirect('post-detial', pk=pk)
